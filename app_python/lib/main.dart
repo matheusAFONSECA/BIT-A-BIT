@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -8,33 +10,41 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyScreen(),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyScreen extends StatelessWidget {
+class MyHomePage extends StatelessWidget {
+  Future<void> sendDataToAPI() async {
+    final apiUrl = 'http://127.0.0.1:5000/';
+    final data = {'key': 'value'}; // Dados que você quer enviar para a API
+
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) {
+      print('API Response: ${response.body}');
+    } else {
+      print('Failed to send data to API');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink[200], // Cor de fundo salmão
       appBar: AppBar(
-        title: Text('Conexão teste com o Flask'),
+        title: Text('Flutter API Integration'),
       ),
       body: Center(
-        child: Container(
-          padding: EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            color: Colors.grey[700], // Cor do texto cinza escura
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Text(
-            'Texto Exemplo',
-            style: TextStyle(
-              fontSize: 24.0,
-              color: Colors.white, // Cor do texto branco
-            ),
-          ),
+        child: ElevatedButton(
+          onPressed: () {
+            sendDataToAPI(); // Chame a função aqui quando o botão for pressionado
+          },
+          child: Text('Enviar Dados para a API'),
         ),
       ),
     );
