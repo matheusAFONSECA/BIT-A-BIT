@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')     # -> colocamos a inform após a "/" para determinar qual aba o app irá
 def hello():        # -> função realizada na aba designada
-    return 'Hello, world!'
+    return 'Hello world'
 
 """
 -> EXEMPLO DE COMO MANDAR INFORMÇÃO PARA UMA OUTRA ABA

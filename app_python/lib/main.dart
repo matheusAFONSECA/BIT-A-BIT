@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   Future<void> sendDataToAPI() async {
-    final apiUrl = 'http://127.0.0.1:5000/';
+    final apiUrl = 'http://10.0.44.30:5000/';
     final data = {'key': 'value'}; // Dados que você quer enviar para a API
 
     final response = await http.post(
