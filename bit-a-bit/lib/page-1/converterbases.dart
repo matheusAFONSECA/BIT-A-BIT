@@ -1,77 +1,106 @@
 import 'package:b/b.dart';
 
-//Função verificar bases e converter
-String converter(String bInicial, String bFinal, String num) {
-  String numConvertido = '';
+// Enumeração para representar as bases
+enum Base {
+  Binary,
+  Octal,
+  Decimal,
+  Hexadecimal,
+}
 
-  if (bInicial == bFinal) {
-    numConvertido = num;
+// Função para verificar se uma string é um número válido na base especificada
+bool isValidNumber(String input, Base base) {
+  String pattern;
+
+  switch (base) {
+    case Base.Binary:
+      pattern = r'^[01]+$';
+      break;
+    case Base.Octal:
+      pattern = r'^[0-7]+$';
+      break;
+    case Base.Decimal:
+      pattern = r'^[0-9]+$';
+      break;
+    case Base.Hexadecimal:
+      pattern = r'^[0-9A-Fa-f]+$';
+      break;
   }
-  else{
-    switch(bInicial){
-      //Binário para outra base
-      case('Binário'):
-        switch(bFinal){
-          case('Octal'):
-            numConvertido = binToOc(num);
+
+  final regex = RegExp(pattern);
+  return regex.hasMatch(input);
+}
+
+// Função para converter números entre bases com validação de entrada
+String converter(Base initialBase, Base finalBase, String num) {
+  if (!isValidNumber(num, initialBase)) {
+    return 'Número de entrada inválido para a base inicial.';
+  }
+
+  String numConverted = '';
+
+  if (initialBase == finalBase) {
+    numConverted = num;
+  } else {
+    switch (initialBase) {
+      case Base.Binary:
+        switch (finalBase) {
+          case Base.Octal:
+            numConverted = binToOc(num);
             break;
-          case('Decimal'):
-            numConvertido = binToDeci(num);
+          case Base.Decimal:
+            numConverted = binToDeci(num);
             break;
-          case('Hexadecimal'):
-            numConvertido = binToHex(num);
-            break;
-        }
-        break;
-        //Octal para outra base
-        case('Octal'):
-        switch(bFinal){
-          case('Binário'):
-            numConvertido = ocToBin(num);
-            break;
-          case('Decimal'):
-            numConvertido = ocToDeci(num);
-            break;
-          case('Hexadecimal'):
-            numConvertido = ocToHex(num);
-            break;
-        }
-        break;
-        //Decimal para outra base
-        case('Decimal'):
-        switch(bFinal){
-          case('Binário'):
-            numConvertido = deciToBin(num);
-            break;
-          case('Octal'):
-            numConvertido = deciToOc(num);
-            break;
-          case('Hexadecimal'):
-            numConvertido = deciToHex(num);
+          case Base.Hexadecimal:
+            numConverted = binToHex(num);
             break;
         }
         break;
-        //Hexadecimal para outra base
-        case('Hexadecimal'):
-        switch(bFinal){
-          case('Binário'):
-            numConvertido = hexToBin(num);
+      case Base.Octal:
+        switch (finalBase) {
+          case Base.Binary:
+            numConverted = ocToBin(num);
             break;
-          case('Octal'):
-            numConvertido = hexToOc(num);
+          case Base.Decimal:
+            numConverted = ocToDeci(num);
             break;
-          case('Decimal'):
-            numConvertido = hexToDeci(num);
+          case Base.Hexadecimal:
+            numConverted = ocToHex(num);
+            break;
+        }
+        break;
+      case Base.Decimal:
+        switch (finalBase) {
+          case Base.Binary:
+            numConverted = deciToBin(num);
+            break;
+          case Base.Octal:
+            numConverted = deciToOc(num);
+            break;
+          case Base.Hexadecimal:
+            numConverted = deciToHex(num);
+            break;
+        }
+        break;
+      case Base.Hexadecimal:
+        switch (finalBase) {
+          case Base.Binary:
+            numConverted = hexToBin(num);
+            break;
+          case Base.Octal:
+            numConverted = hexToOc(num);
+            break;
+          case Base.Decimal:
+            numConverted = hexToDeci(num);
             break;
         }
         break;
     }
   }
 
-  return numConvertido;
+  return numConverted;
 }
 
-//Funções de conversões de bases
 final BaseConversion binToOc = BaseConversion(from: base2, to: base8);
 final BaseConversion binToDeci = BaseConversion(from: base2, to: base10);
 final BaseConversion binToHex = BaseConversion(from: base2, to: base16);
