@@ -11,7 +11,14 @@ class _MyAPIScreenState extends State<MyAPIScreen> {
   String _responseText = '';
 
   Future<void> _sendDataToAPI() async {
-    final url = "http://127.0.0.1:5000/simplifica";
+    final url =
+        "http://192.168.10.119:8080/simplifica"; // -> para quando rodar no emulador
+
+    // final url =
+    //     "http://127.0.0.1:5000/simplifica"; // -> para quando rodar no PC (web)
+
+    // final url =
+    //     "https://matheusafonseca.pythonanywhere.com/simplifica"; // para rodar no celular
 
     final response =
         await http.post(Uri.parse(url), body: {"data": _inputText});
