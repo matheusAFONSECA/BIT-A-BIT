@@ -31,10 +31,45 @@ bool isValidNumber(String input, Base base) {
   return regex.hasMatch(input);
 }
 
+//Função para alterar o dado do tipo String para o tipo Base
+String stringToBase(String initialBase, String finalBase, String num){
+  Base initialBase_ = Base.Binary;
+  Base finalBase_ = Base.Binary;
+  switch (initialBase) {
+    case 'Binário':
+      initialBase_ = Base.Binary;
+      break;
+    case 'Octal':
+      initialBase_ = Base.Octal;
+      break;
+    case 'Decimal':
+      initialBase_ = Base.Decimal;
+      break;
+    case 'Hexadecimal':
+      initialBase_ = Base.Hexadecimal;
+      break;
+  }
+  switch (finalBase) {
+    case 'Binário':
+      finalBase_ = Base.Binary;
+      break;
+    case 'Octal':
+      finalBase_ = Base.Octal;
+      break;
+    case 'Decimal':
+      finalBase_ = Base.Decimal;
+      break;
+    case 'Hexadecimal':
+      finalBase_ = Base.Hexadecimal;
+      break;
+  }
+  return converter(initialBase_, finalBase_, num);
+}
+
 // Função para converter números entre bases com validação de entrada
 String converter(Base initialBase, Base finalBase, String num) {
   if (!isValidNumber(num, initialBase)) {
-    return 'Número de entrada inválido para a base inicial.';
+    return 'Número de entrada inválido para a base inicial!';
   }
 
   String numConverted = '';

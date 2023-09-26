@@ -16,6 +16,7 @@ class _Conversor2 extends State<Conversor2> {
   final basesDrop = ['Binário', 'Octal', 'Decimal', 'Hexadecimal'];
   String resultado = '';
   String numInicial = '';
+  String aux = '';
 
   @override
   Widget build(BuildContext context) {
@@ -103,10 +104,44 @@ class _Conversor2 extends State<Conversor2> {
                                         ),
                                         value: (value.isEmpty) ? null : value,
                                         onChanged: (escolha) {
-                                          valorDropInicial.value = escolha.toString();
+                                          valorDropInicial.value =
+                                              escolha.toString();
                                           setState(() {
-                                            if ((numInicial.isNotEmpty) &&(valorDropConvertido.value.isNotEmpty)) {
-                                              resultado = converter(valorDropInicial.value, valorDropConvertido.value, numInicial);
+                                            if ((numInicial.isNotEmpty) &&
+                                                (valorDropConvertido
+                                                    .value.isNotEmpty)) {
+                                              aux = stringToBase(
+                                                  valorDropInicial.value,
+                                                  valorDropConvertido.value,
+                                                  numInicial);
+                                              if (aux ==
+                                                  'Número de entrada inválido para a base inicial!') {
+                                                resultado = '';
+                                                showDialog<String>(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          AlertDialog(
+                                                    title: Text(aux),
+                                                    content: const Text(
+                                                        'Entre com um número pertencente a base inicial dada.'),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        style: TextButton.styleFrom(
+                                                            foregroundColor:
+                                                                const Color(
+                                                                    0xff114b5f)),
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                context),
+                                                        child: const Text('OK'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              } else {
+                                                resultado = aux;
+                                              }
                                             }
                                           });
                                         },
@@ -127,58 +162,90 @@ class _Conversor2 extends State<Conversor2> {
                         //Base final
                         Column(
                           children: [
-                        Text('Insira para qual \nbase converter:',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.nunito(
-                                textStyle: const TextStyle(
-                              fontSize: 20,
-                              color: Color(0xffffffff),
-                            ))),
-                        //Seleção base final
-                        ValueListenableBuilder(
-                          valueListenable: valorDropConvertido,
-                          builder: (BuildContext context, String value, _) {
-                            return SizedBox(
-                              width: baseWidth * 0.3,
-                              child: DropdownButtonFormField<String>(
-                                dropdownColor: const Color(0xff88d498),
-                                isExpanded: true,
-                                hint: const Text('Selecione:'),
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff000000), width: 2),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff000000), width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0xff88d498),
-                                ),
-                                value: (value.isEmpty) ? null : value,
-                                onChanged: (escolha){
-                                  valorDropConvertido.value = escolha.toString();
-                                   setState(() {
-                                    if ((numInicial.isNotEmpty) &&(valorDropInicial.value.isNotEmpty)) {
-                                          resultado = converter(valorDropInicial.value, valorDropConvertido.value, numInicial);
-                                        }
-                                   });
-                                },
-                                items: basesDrop
-                                    .map(
-                                      (opcao) => DropdownMenuItem(
-                                        value: opcao,
-                                        child: Text(opcao),
+                            Text('Insira para qual \nbase converter:',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.nunito(
+                                    textStyle: const TextStyle(
+                                  fontSize: 20,
+                                  color: Color(0xffffffff),
+                                ))),
+                            //Seleção base final
+                            ValueListenableBuilder(
+                              valueListenable: valorDropConvertido,
+                              builder: (BuildContext context, String value, _) {
+                                return SizedBox(
+                                  width: baseWidth * 0.3,
+                                  child: DropdownButtonFormField<String>(
+                                    dropdownColor: const Color(0xff88d498),
+                                    isExpanded: true,
+                                    hint: const Text('Selecione:'),
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        borderSide: const BorderSide(
+                                            color: Color(0xff000000), width: 2),
                                       ),
-                                    )
-                                    .toList(),
-                              ),
-                            );
-                          },
-                        ),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        borderSide: const BorderSide(
+                                            color: Color(0xff000000), width: 2),
+                                      ),
+                                      filled: true,
+                                      fillColor: Color(0xff88d498),
+                                    ),
+                                    value: (value.isEmpty) ? null : value,
+                                    onChanged: (escolha) {
+                                      valorDropConvertido.value =
+                                          escolha.toString();
+                                      setState(() {
+                                        if ((numInicial.isNotEmpty) &&
+                                            (valorDropConvertido
+                                                .value.isNotEmpty)) {
+                                          aux = stringToBase(
+                                              valorDropInicial.value,
+                                              valorDropConvertido.value,
+                                              numInicial);
+                                          if (aux ==
+                                              'Número de entrada inválido para a base inicial!') {
+                                            resultado = '';
+                                            showDialog<String>(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  AlertDialog(
+                                                title: Text(aux),
+                                                content: const Text(
+                                                    'Entre com um número pertencente a base inicial dada.'),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    style: TextButton.styleFrom(
+                                                        foregroundColor:
+                                                            const Color(
+                                                                0xff114b5f)),
+                                                    onPressed: () =>
+                                                        Navigator.pop(context),
+                                                    child: const Text('OK'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          } else {
+                                            resultado = aux;
+                                          }
+                                        }
+                                      });
+                                    },
+                                    items: basesDrop
+                                        .map(
+                                          (opcao) => DropdownMenuItem(
+                                            value: opcao,
+                                            child: Text(opcao),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         )
                       ]),
@@ -218,10 +285,35 @@ class _Conversor2 extends State<Conversor2> {
                           onChanged: (String num) {
                             numInicial = num;
                             setState(() {
-                              if ((valorDropInicial.value.isNotEmpty) &&
+                              if ((numInicial.isNotEmpty) &&
                                   (valorDropConvertido.value.isNotEmpty)) {
-                                resultado = converter(valorDropInicial.value,
-                                    valorDropConvertido.value, num);
+                                aux = stringToBase(valorDropInicial.value,
+                                    valorDropConvertido.value, numInicial);
+                                if (aux ==
+                                    'Número de entrada inválido para a base inicial!') {
+                                  resultado = '';
+                                  showDialog<String>(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      title: Text(aux),
+                                      content: const Text(
+                                          'Entre com um número pertencente a base inicial dada.'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                              foregroundColor:
+                                                  const Color(0xff114b5f)),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: const Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                } else {
+                                  resultado = aux;
+                                }
                               }
                             });
                           },
@@ -272,10 +364,13 @@ class _Conversor2 extends State<Conversor2> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04 * baseHeight),
                         child: TextButton(
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ConversorPasso2()));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ConversorPasso2()));
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),
@@ -292,11 +387,12 @@ class _Conversor2 extends State<Conversor2> {
                           child: const Text(
                             'Resolução\npasso a passo',
                             textAlign: TextAlign.center,
-                            ),
+                          ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0.05*baseWidth, 0, 0, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(
+                            0.05 * baseWidth, 0, 0, 0.04 * baseHeight),
                         decoration: BoxDecoration(
                           color: const Color(0xffdfee36),
                           border: Border.all(

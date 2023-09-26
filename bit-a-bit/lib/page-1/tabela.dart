@@ -125,7 +125,6 @@ class _Tabela extends State<Tabela> {
                                   MaterialPageRoute(
                                       builder: (context) => Tabela4Var(expressao, variaveis)));
                             } else {
-                              print('entrou');
                               //Alerta num de variáveis inválidas
                               showDialog<String>(
                                 context: context,
