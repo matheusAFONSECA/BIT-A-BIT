@@ -101,12 +101,24 @@ def simpTabela():
 # ROTA QUE GERA A TABELA DA VERDADE -> teste na própria API
 #Gerar tabela da verdade
 #String para sympy, lista as variaveis e retorna uma lista da tabela
-@app.route('/tabela/<string:exp>')
-def tabela(exp):
-  exp_sympy = sympify(exp)
-  simbolos = list(exp_sympy.free_symbols)
-  tabela = truth_table(exp_sympy, simbolos)
-  return str(list(tabela))
+# @app.route('/tabela/<string:exp>')
+# def tabela(exp):
+#   exp_sympy = sympify(exp)
+#   simbolos = list(exp_sympy.free_symbols)
+#   tabela = truth_table(exp_sympy, simbolos)
+#   return str(list(tabela))
+
+
+# ROTA QUE GERA A TABELA DA VERDADE -> usando uma aplicação externa
+#Gerar tabela da verdade
+#String para sympy, lista as variaveis e retorna uma lista da tabela
+@app.route('/tabela', methods=['POST'])
+def tabela():
+    data = request.form.get('exp')  # Obtém o valor da chave 'exp' do corpo da solicitação POST
+    exp_sympy = sympify(data)
+    simbolos = list(exp_sympy.free_symbols)
+    tabela = truth_table(exp_sympy, simbolos)
+    return str(list(tabela))
 
 
 if __name__=='__main__':
