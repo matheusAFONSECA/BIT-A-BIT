@@ -12,16 +12,17 @@ class _MyAPIScreenState extends State<MyAPIScreen> {
 
   Future<void> _sendDataToAPI() async {
     final url =
-        "http://192.168.10.119:8080/simplifica"; // -> para quando rodar no emulador
+        "http://10.0.21.236:8080/simptabela"; // -> para quando rodar no emulador
 
     // final url =
-    //     "http://127.0.0.1:5000/simplifica"; // -> para quando rodar no PC (web)
+    //     "http://127.0.0.1:5000/simptabela"; // -> para quando rodar no PC (web)
 
     // final url =
     //     "https://matheusafonseca.pythonanywhere.com/simplifica"; // para rodar no celular
 
-    final response =
-        await http.post(Uri.parse(url), body: {"data": _inputText});
+    final response = await http.post(Uri.parse(url), body: {
+      "mapa": _inputText
+    }); // quando for usar o simplifica mudar para "mapa" para "data"
 
     if (response.statusCode == 200) {
       // A solicitação foi bem-sucedida
