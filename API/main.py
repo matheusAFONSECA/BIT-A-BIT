@@ -5,6 +5,7 @@ from sympy import sympify, simplify_logic
 
 
 app = Flask(__name__)
+
 CORS(app)   # permite que qualquer despositivo acesse a API
 
 # -> caso queira definir o local que poderá acessar a API
@@ -36,4 +37,5 @@ def simplifica():
 
 if __name__=='__main__':
 	# app.run(debug=True)     # ATIVA A DEBUGAÇÃO -> mudanças no código acontecem em tempo real na API
-    app.run()
+    # app.run()               # Roda a API na porta padrão http://127.0.0.1:5000/ -> web, no PC mesmo
+    app.run(host='0.0.0.0', port=8080)    # roda a API em uma porta e host que específicamos -> emulador
