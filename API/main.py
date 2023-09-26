@@ -98,7 +98,18 @@ def simpTabela():
     return str(exp)
 
 
+# ROTA QUE GERA A TABELA DA VERDADE -> teste na própria API
+#Gerar tabela da verdade
+#String para sympy, lista as variaveis e retorna uma lista da tabela
+@app.route('/tabela/<string:exp>')
+def tabela(exp):
+  exp_sympy = sympify(exp)
+  simbolos = list(exp_sympy.free_symbols)
+  tabela = truth_table(exp_sympy, simbolos)
+  return str(list(tabela))
+
+
 if __name__=='__main__':
 	# app.run(debug=True)     # ATIVA A DEBUGAÇÃO -> mudanças no código acontecem em tempo real na API
-    # app.run()               # Roda a API na porta padrão http://127.0.0.1:5000/ -> web, no PC mesmo
-    app.run(host='0.0.0.0', port=8080)    # roda a API em uma porta e host que específicamos -> emulador
+    app.run()               # Roda a API na porta padrão http://127.0.0.1:5000/ -> web, no PC mesmo
+    # app.run(host='0.0.0.0', port=8080)    # roda a API em uma porta e host que específicamos -> emulador
