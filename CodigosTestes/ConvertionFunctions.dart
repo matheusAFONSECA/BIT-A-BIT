@@ -89,7 +89,7 @@ String binaryToHexadecimal(String binary) {
 
 String decimalToOctal(int decimal) {
   String octal = '';
-  
+
   if (decimal == 0) {
     octal = '0';
   } else {
@@ -99,7 +99,7 @@ String decimalToOctal(int decimal) {
       decimal = decimal ~/ 8;
     }
   }
-  
+
   return octal;
 }
 
@@ -137,4 +137,4 @@ String hexadecimalToBinary(String hexadecimal) {
   int decimal = hexadecimalToDecimal(hexadecimal);
   String binary = decimalToBinary(decimal);
   return binary;
-}x
+}

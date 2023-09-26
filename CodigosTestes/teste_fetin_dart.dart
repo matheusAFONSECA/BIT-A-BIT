@@ -1,8 +1,8 @@
-import 'package:dart_extensions_methods/dart_extension_methods.dart';
-import 'package:teste_fetin_dart/teste_fetin_dart.dart' as teste_fetin_dart;
-import 'package:boolean_selector/boolean_selector.dart';
-//import 'package:dart_extensions_methods/boolean_methods.dart';
-import 'package:dart_extensions_methods/dart_extension_methods.dart';
+// import 'package:dart_extensions_methods/dart_extension_methods.dart';
+// import 'package:teste_fetin_dart/teste_fetin_dart.dart' as teste_fetin_dart;
+// import 'package:boolean_selector/boolean_selector.dart';
+// import 'package:dart_extensions_methods/boolean_methods.dart';
+// import 'package:dart_extensions_methods/dart_extension_methods.dart';
 /*import 'package:dart_extensions_methods/general.dart';
 import 'package:dart_extensions_methods/iterable_methods.dart';
 import 'package:dart_extensions_methods/pair.dart';
@@ -20,7 +20,7 @@ void main(List<String> arguments) {
   print(calculaSaida(nVar, 2));
 
   String teste = "true";
-  print(teste.toBoolean());
+  // print(teste.toBoolean());
 }
 
 //Converter de inteiro para booleano
