@@ -5,15 +5,14 @@ import 'package:myapp/page-1/mapa2passo.dart';
 
 // ignore: must_be_immutable
 class Mapa2Simp extends StatefulWidget {
-  Map<int, int> mapa;
-  Mapa2Simp(this.mapa, {super.key});
+  String expressao;
+  Mapa2Simp(this.expressao, {super.key});
 
   @override
   _Mapa2Simp createState() => _Mapa2Simp();
 }
 
 class _Mapa2Simp extends State<Mapa2Simp> {
-
   @override
   Widget build(BuildContext context) {
     double baseWidth = MediaQuery.of(context).size.width;
@@ -31,28 +30,28 @@ class _Mapa2Simp extends State<Mapa2Simp> {
               children: [
                 //Cabeçalho
                 Container(
-                  margin: EdgeInsets.fromLTRB(0.05*baseWidth, 0.06 * baseHeight, 0.05*baseWidth, 0),
-                  child: Text(
-                    'Expressão Simplificada:',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.nunito(
-                    textStyle: const TextStyle(
-                    fontSize: 27,
-                    color: Color(0xffffffff),
-                    ))),
+                  margin: EdgeInsets.fromLTRB(
+                      0.05 * baseWidth, 0.06 * baseHeight, 0.05 * baseWidth, 0),
+                  child: Text('Expressão Simplificada:',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.nunito(
+                          textStyle: const TextStyle(
+                        fontSize: 27,
+                        color: Color(0xffffffff),
+                      ))),
                 ),
                 //Final cabeçalho
                 //Expressão simplificada
                 Container(
-                  margin: EdgeInsets.fromLTRB(0.05*baseWidth, 0.06 * baseHeight, 0.05*baseWidth, 0),
-                  child: Text(
-                    simplificarExp(valoresMapa),
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.nunito(
-                    textStyle: const TextStyle(
-                    fontSize: 27,
-                    color: Color(0xffffffff),
-                    ))),
+                  margin: EdgeInsets.fromLTRB(
+                      0.05 * baseWidth, 0.06 * baseHeight, 0.05 * baseWidth, 0),
+                  child: Text(expressao,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.nunito(
+                          textStyle: const TextStyle(
+                        fontSize: 27,
+                        color: Color(0xffffffff),
+                      ))),
                 ),
                 //Botões inferiores
                 Expanded(
@@ -61,7 +60,8 @@ class _Mapa2Simp extends State<Mapa2Simp> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0.05*baseWidth, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(
+                            0, 0, 0.05 * baseWidth, 0.04 * baseHeight),
                         decoration: BoxDecoration(
                           color: const Color(0xffdfee36),
                           border: Border.all(
@@ -81,10 +81,14 @@ class _Mapa2Simp extends State<Mapa2Simp> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04 * baseHeight),
                         child: TextButton(
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Mapa2Passo(widget.mapa)));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Mapa2Passo(expressao)));
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),
@@ -101,11 +105,12 @@ class _Mapa2Simp extends State<Mapa2Simp> {
                           child: const Text(
                             'Resolução\npasso a passo',
                             textAlign: TextAlign.center,
-                            ),
+                          ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0.05*baseWidth, 0, 0, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(
+                            0.05 * baseWidth, 0, 0, 0.04 * baseHeight),
                         decoration: BoxDecoration(
                           color: const Color(0xffdfee36),
                           border: Border.all(
@@ -130,11 +135,4 @@ class _Mapa2Simp extends State<Mapa2Simp> {
       ),
     );
   }
-}
-
-String simplificarExp(Map<int, int> valoresMapa)
-{
-  //Simplificar a expressão
-  String exp = 'Aqui aparecerá a expressão simplificada\nMapa: ${valoresMapa.toString()}';
-  return exp;
 }

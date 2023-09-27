@@ -4,8 +4,8 @@ import 'package:myapp/page-1/mapa2var.dart';
 
 // ignore: must_be_immutable
 class Mapa2Passo extends StatefulWidget {
-  Map<int, int> mapa;
-  Mapa2Passo(this.mapa, {super.key});
+  String expressao;
+  Mapa2Passo(this.expressao, {super.key});
 
   @override
   _Mapa2Passo createState() => _Mapa2Passo();
@@ -115,17 +115,18 @@ class _Mapa2Passo extends State<Mapa2Passo> {
                           ),
                           //Valor 01
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresMapa[01].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -143,30 +144,32 @@ class _Mapa2Passo extends State<Mapa2Passo> {
                           ),
                           //Valor 10
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresMapa[10].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 11
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresMapa[11].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                       ],
                     ),
