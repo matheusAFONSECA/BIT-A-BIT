@@ -571,9 +571,33 @@ class _Tabela3Var extends State<Tabela3Var> {
 }
 
 Map<int, int> criarTabela(String exp){
-  Map<int, int> tabela;
-  //Aqui irá criar tabela
-  tabela = {000: 0, 001:1, 010:1, 011:0, 100: 0, 101:1, 110:1, 111:0};
+  Map<int, int> tabela = {};
+  String tab = "([0, 0, 0], False) ([0, 0, 1], False) ([0, 1, 0], False) ([0, 1, 1], True) ([1, 0, 0], False) ([1, 0, 1], True) ([1, 1, 0], True) ([1, 1, 1], True)";
+  String aux = tab;
+  List listAux;
+  int indice;
+  int valor;
+
+  aux = aux.replaceAll(',', '');
+  aux = aux.replaceAll('(', '');
+  aux = aux.replaceAll(')', '');
+  aux = aux.replaceAll('[', '');
+  aux = aux.replaceAll(']', '');
+  print(aux);
+  listAux = aux.split(' ');
+  print(listAux.length);
+  for(int i=0; i<listAux.length; i+=4){
+    aux = listAux[i]+listAux[i+1]+listAux[i+2];
+    print(aux);
+    indice = int.parse(aux);
+    if(listAux[i+3]=='False'){
+      valor = 0;
+    }
+    else{
+      valor = 1;
+    }
+    tabela.addAll({indice : valor});
+  }
 
   return tabela;
 }

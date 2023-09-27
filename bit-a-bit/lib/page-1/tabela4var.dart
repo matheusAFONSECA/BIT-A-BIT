@@ -1168,9 +1168,33 @@ class _Tabela4Var extends State<Tabela4Var> {
 }
 
 Map<int, int> criarTabela(String exp){
-  Map<int, int> tabela;
-  //Aqui irá criar tabela
-  tabela = {0000: 0, 0001:1, 0010:1, 0011:0, 0100: 0, 0101:1, 0110:1, 0111:0, 1000: 0, 1001:1, 1010:1, 1011:0, 1100: 0, 1101:1, 1110:1, 1111:0};
+  Map<int, int> tabela = {};
+  String tab = "([0, 0, 0, 0], False) ([0, 0, 0, 1], False) ([0, 0, 1, 0], False) ([0, 0, 1, 1], False) ([0, 1, 0, 0], False) ([0, 1, 0, 1], False) ([0, 1, 1, 0], True) ([0, 1, 1, 1], True) ([1, 0, 0, 0], False) ([1, 0, 0, 1], False) ([1, 0, 1, 0], True) ([1, 0, 1, 1], True) ([1, 1, 0, 0], True) ([1, 1, 0, 1], True) ([1, 1, 1, 0], True) ([1, 1, 1, 1], True)";
+  String aux = tab;
+  List listAux;
+  int indice;
+  int valor;
+
+  aux = aux.replaceAll(',', '');
+  aux = aux.replaceAll('(', '');
+  aux = aux.replaceAll(')', '');
+  aux = aux.replaceAll('[', '');
+  aux = aux.replaceAll(']', '');
+  print(aux);
+  listAux = aux.split(' ');
+  print(listAux.length);
+  for(int i=0; i<listAux.length; i+=5){
+    aux = listAux[i]+listAux[i+1]+listAux[i+2]+listAux[i+3];
+    print(aux);
+    indice = int.parse(aux);
+    if(listAux[i+4]=='False'){
+      valor = 0;
+    }
+    else{
+      valor = 1;
+    }
+    tabela.addAll({indice : valor});
+  }
 
   return tabela;
 }
