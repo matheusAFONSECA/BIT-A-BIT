@@ -3,15 +3,15 @@ import 'tabela.dart';
 
 // ignore: must_be_immutable
 class Tabela2Var extends StatefulWidget {
-  String expressao;
+  String tab;
   List<String> variaveis;
-  Tabela2Var(this.expressao, this.variaveis, {super.key});
+  Tabela2Var(this.tab, this.variaveis, {super.key});
 
   @override
   _Tabela2Var createState() => _Tabela2Var();
 }
 
-var valoresTabela = criarTabela(expressao);
+var valoresTabela = criarTabela(tab);
 
 class _Tabela2Var extends State<Tabela2Var> {
   @override
@@ -115,17 +115,18 @@ class _Tabela2Var extends State<Tabela2Var> {
                           ),
                           //Valor 00
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[00].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -142,30 +143,32 @@ class _Tabela2Var extends State<Tabela2Var> {
                             ),
                           ),
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 01
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[01].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -182,30 +185,32 @@ class _Tabela2Var extends State<Tabela2Var> {
                             ),
                           ),
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '0',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 10
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[10].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -222,30 +227,32 @@ class _Tabela2Var extends State<Tabela2Var> {
                             ),
                           ),
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 11
                           Container(
-                              height: 0.25 * baseWidth,
-                              width: 0.25 * baseWidth,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.25 * baseWidth,
+                            width: 0.25 * baseWidth,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[11].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                       ],
                     ),
@@ -328,9 +335,10 @@ class _Tabela2Var extends State<Tabela2Var> {
   }
 }
 
-Map<int, int> criarTabela(String exp){
+Map<int, int> criarTabela(String tab) {
+  print("O que chegou:");
+  print(tab);
   Map<int, int> tabela = {};
-  String tab = "([0, 0] False) ([0, 1], False) ([1, 0], False) ([1, 1], True)";
   String aux = tab;
   List listAux;
   int indice;
@@ -344,17 +352,16 @@ Map<int, int> criarTabela(String exp){
   print(aux);
   listAux = aux.split(' ');
   print(listAux.length);
-  for(int i=0; i<listAux.length; i+=3){
-    aux = listAux[i]+listAux[i+1];
+  for (int i = 0; i < listAux.length; i += 3) {
+    aux = listAux[i] + listAux[i + 1];
     print(aux);
     indice = int.parse(aux);
-    if(listAux[i+2]=='False'){
+    if (listAux[i + 2] == 'False') {
       valor = 0;
-    }
-    else{
+    } else {
       valor = 1;
     }
-    tabela.addAll({indice : valor});
+    tabela.addAll({indice: valor});
   }
 
   return tabela;

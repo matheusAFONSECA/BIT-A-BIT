@@ -134,16 +134,17 @@ class _Tabela3Var extends State<Tabela3Var> {
                           ),
                           //Valor 000
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[000].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -171,28 +172,30 @@ class _Tabela3Var extends State<Tabela3Var> {
                             ),
                           ),
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 001
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[001].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -220,28 +223,30 @@ class _Tabela3Var extends State<Tabela3Var> {
                             ),
                           ),
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '0',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 010
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[010].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -269,28 +274,30 @@ class _Tabela3Var extends State<Tabela3Var> {
                             ),
                           ),
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 011
                           Container(
-                              height: 0.075 * baseHeight, 
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[011].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -331,16 +338,17 @@ class _Tabela3Var extends State<Tabela3Var> {
                           ),
                           //Valor 100
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[100].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -368,28 +376,30 @@ class _Tabela3Var extends State<Tabela3Var> {
                             ),
                           ),
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 101
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[101].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -417,28 +427,30 @@ class _Tabela3Var extends State<Tabela3Var> {
                             ),
                           ),
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '0',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 110
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[110].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                         TableRow(children: <Widget>[
                           Container(
@@ -466,28 +478,30 @@ class _Tabela3Var extends State<Tabela3Var> {
                             ),
                           ),
                           Container(
-                              height: 0.075 * baseHeight,
-                              alignment: Alignment.center,
-                              child: const Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: const Text(
                               '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                           //Valor 111
                           Container(
-                              height: 0.075 * baseHeight, 
-                              alignment: Alignment.center,
-                              child: Text(
+                            height: 0.075 * baseHeight,
+                            alignment: Alignment.center,
+                            child: Text(
                               valoresTabela[111].toString(),
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 40,
                                 color: Color(0xffffffff),
                               ),
-                            ),),
+                            ),
+                          ),
                         ]),
                       ],
                     ),
@@ -570,9 +584,8 @@ class _Tabela3Var extends State<Tabela3Var> {
   }
 }
 
-Map<int, int> criarTabela(String exp){
+Map<int, int> criarTabela(String tab) {
   Map<int, int> tabela = {};
-  String tab = "([0, 0, 0], False) ([0, 0, 1], False) ([0, 1, 0], False) ([0, 1, 1], True) ([1, 0, 0], False) ([1, 0, 1], True) ([1, 1, 0], True) ([1, 1, 1], True)";
   String aux = tab;
   List listAux;
   int indice;
@@ -586,17 +599,16 @@ Map<int, int> criarTabela(String exp){
   print(aux);
   listAux = aux.split(' ');
   print(listAux.length);
-  for(int i=0; i<listAux.length; i+=4){
-    aux = listAux[i]+listAux[i+1]+listAux[i+2];
+  for (int i = 0; i < listAux.length; i += 4) {
+    aux = listAux[i] + listAux[i + 1] + listAux[i + 2];
     print(aux);
     indice = int.parse(aux);
-    if(listAux[i+3]=='False'){
+    if (listAux[i + 3] == 'False') {
       valor = 0;
-    }
-    else{
+    } else {
       valor = 1;
     }
-    tabela.addAll({indice : valor});
+    tabela.addAll({indice: valor});
   }
 
   return tabela;

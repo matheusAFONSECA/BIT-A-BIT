@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/tabela2var.dart';
 import 'package:myapp/page-1/tabela3var.dart';
 import 'package:myapp/page-1/tabela4var.dart';
+import 'package:http/http.dart' as http;
 
 class Tabela extends StatefulWidget {
   const Tabela({super.key});
@@ -13,9 +14,66 @@ class Tabela extends StatefulWidget {
 
 String expressao = '';
 List<String> variaveis = [];
+String tab = "";
 
 class _Tabela extends State<Tabela> {
   int numVar = 0;
+
+  Future<void> _sendDataToAPI() async {
+    final url =
+        "http://127.0.0.1:5000/tabela"; // -> para quando rodar no PC (web)
+
+    // quando for usar o "simplifica" mudar para "data"
+    // quando for usar o "simptabela" mudar para "mapa"
+    // quando for usar a "tabela" mudar para "exp"
+    final response = await http.post(Uri.parse(url), body: {"exp": expressao});
+
+    if (response.statusCode == 200) {
+      // A solicitação foi bem-sucedida
+      final responseData = response.body;
+      setState(() {
+        tab = responseData;
+      });
+    } else {
+      // A solicitação falhou
+      print('Erro na solicitação: ${response.statusCode}');
+    }
+
+    variaveis = calculaVar(expressao);
+    numVar = variaveis.length;
+    print("numvar: ");
+    print(numVar);
+    print("tabela:");
+    print(tab);
+    if (numVar == 2) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Tabela2Var(tab, variaveis)));
+    } else if (numVar == 3) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Tabela3Var(tab, variaveis)));
+    } else if (numVar == 4) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => Tabela4Var(tab, variaveis)));
+    } else {
+      //Alerta num de variáveis inválidas
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Número de variáveis inválido!'),
+          content: const Text(
+              'Entre com uma expressão que tenha de 2 a 4 variáveis.'),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xff114b5f)),
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,44 +164,8 @@ class _Tabela extends State<Tabela> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04 * baseHeight),
                         child: TextButton(
                           onPressed: () {
-                            variaveis = calculaVar(expressao);
-                            numVar = variaveis.length;
-                            print(numVar);
-                            if (numVar == 2) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Tabela2Var(expressao, variaveis)));
-                            } else if (numVar == 3) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Tabela3Var(expressao, variaveis)));
-                            } else if (numVar == 4) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Tabela4Var(expressao, variaveis)));
-                            } else {
-                              //Alerta num de variáveis inválidas
-                              showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                  title: const Text(
-                                      'Número de variáveis inválido!'),
-                                  content: const Text(
-                                      'Entre com uma expressão que tenha de 2 a 4 variáveis.'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      style: TextButton.styleFrom(foregroundColor: const Color(0xff114b5f)),
-                                      onPressed: () =>
-                                          Navigator.pop(context),
-                                      child: const Text('OK'),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }
+                            _sendDataToAPI();
+                            print(tab);
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),
