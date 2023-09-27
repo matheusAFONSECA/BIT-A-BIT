@@ -164,8 +164,8 @@ class _Tabela extends State<Tabela> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04 * baseHeight),
                         child: TextButton(
                           onPressed: () {
+                            expressao = tratarExp(expressao);
                             _sendDataToAPI();
-                            print(tab);
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),
@@ -228,4 +228,15 @@ List<String> calculaVar(String exp) {
   }
 
   return variaveis;
+}
+
+String tratarExp(String exp){
+  String expTrat = '';
+  String aux = exp;
+  aux = aux.replaceAll('+', '|');
+  aux = aux.replaceAll('*', '&');
+  aux = aux.replaceAll('\'', '~');
+  
+  expTrat = aux;
+  return expTrat;
 }
