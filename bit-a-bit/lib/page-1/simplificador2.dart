@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/simplificadorPasso2.dart';
+import 'package:http/http.dart' as http;
 
 class Simplificacao2 extends StatefulWidget {
   const Simplificacao2({super.key});
@@ -12,6 +13,27 @@ class Simplificacao2 extends StatefulWidget {
 class _Simplificacao2 extends State<Simplificacao2> {
   String expressao = '';
   String resultado = '';
+
+  Future<void> _sendDataToAPI() async {
+    final url =
+        "http://127.0.0.1:5000/simplifica"; // -> para quando rodar no PC (web)
+
+    // quando for usar o "simplifica" mudar para "data"
+    // quando for usar o "simptabela" mudar para "mapa"
+    // quando for usar a "tabela" mudar para "exp"
+    final response = await http.post(Uri.parse(url), body: {"data": expressao});
+
+    if (response.statusCode == 200) {
+      // A solicitação foi bem-sucedida
+      final responseData = response.body;
+      setState(() {
+        resultado = responseData;
+      });
+    } else {
+      // A solicitação falhou
+      print('Erro na solicitação: ${response.statusCode}');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,26 +118,24 @@ class _Simplificacao2 extends State<Simplificacao2> {
                     width: baseWidth * 0.45,
                     height: baseHeight * 0.05,
                     child: TextButton(
-                        onPressed: (){
-                          resultado = simplificar(expressao);
-                        },
-                        style: TextButton.styleFrom(
-                          backgroundColor: const Color(0xffdfee36),
-                          foregroundColor: const Color(0xff000000),
-                          padding: const EdgeInsets.all(10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          side: const BorderSide(width: 2),
-                          textStyle: const TextStyle(
-                            fontSize: 20,
-                          ),
-                          ),
-                        child: const Text(
-                          'Simplificar',
-                          textAlign: TextAlign.center,
-                          ),
+                      onPressed: _sendDataToAPI,
+                      style: TextButton.styleFrom(
+                        backgroundColor: const Color(0xffdfee36),
+                        foregroundColor: const Color(0xff000000),
+                        padding: const EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
+                        side: const BorderSide(width: 2),
+                        textStyle: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      child: const Text(
+                        'Simplificar',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ),
                 //Resultado simplificado
@@ -160,10 +180,14 @@ class _Simplificacao2 extends State<Simplificacao2> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04 * baseHeight),
                         child: TextButton(
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SimplificadorPasso2()));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SimplificadorPasso2()));
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),
@@ -180,11 +204,12 @@ class _Simplificacao2 extends State<Simplificacao2> {
                           child: const Text(
                             'Resolução\npasso a passo',
                             textAlign: TextAlign.center,
-                            ),
+                          ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0.05*baseWidth, 0, 0, 0.04*baseHeight),
+                        margin: EdgeInsets.fromLTRB(
+                            0.05 * baseWidth, 0, 0, 0.04 * baseHeight),
                         decoration: BoxDecoration(
                           color: const Color(0xffdfee36),
                           border: Border.all(
@@ -209,12 +234,4 @@ class _Simplificacao2 extends State<Simplificacao2> {
       ),
     );
   }
-}
-
-
-//Simplificar expressão
-String simplificar(String exp){
-  String resultado = exp;
-
-  return resultado;
 }

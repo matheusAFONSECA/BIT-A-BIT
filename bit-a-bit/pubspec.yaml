@@ -39,6 +39,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
   b: ^0.1.2
+  http: ^1.1.0 # biblioteca para realizar a conexão http
+
 
 dev_dependencies:
   flutter_test:
