@@ -35,6 +35,7 @@ class _Mapa2Var extends State<Mapa2Var> {
       // A solicitação falhou
       print('Erro na solicitação: ${response.statusCode}');
     }
+
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => Mapa2Simp(expressao)));
   }
