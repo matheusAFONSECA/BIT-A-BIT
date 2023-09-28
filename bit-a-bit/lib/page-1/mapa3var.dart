@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'mapa3simp.dart';
+import 'package:http/http.dart' as http;
+import 'urlAtual.dart';
 
 class Mapa3Var extends StatefulWidget {
   const Mapa3Var({super.key});
@@ -11,8 +13,32 @@ class Mapa3Var extends StatefulWidget {
 
 var estadoTexto = {000:false, 001:false, 010:false, 011:false, 100:false, 101:false, 110:false, 111:false};
 var valoresMapa = {000:0, 001:0, 010:0, 011:0, 100:0, 101:0, 110:0, 111:0};
+var expressao = "";
 
 class _Mapa3Var extends State<Mapa3Var> {
+  Future<void> _sendDataToAPI() async {
+    final url =
+        "${urlAtual()}/simptabela"; // -> para quando rodar no PC (web)
+
+    // quando for usar o "simplifica" mudar para "data"
+    // quando for usar o "simptabela" mudar para "mapa"
+    // quando for usar a "tabela" mudar para "exp"
+    final response =
+        await http.post(Uri.parse(url), body: {"mapa": valoresMapa.toString()});
+
+    if (response.statusCode == 200) {
+      // A solicitação foi bem-sucedida
+      final responseData = response.body;
+      setState(() {
+        expressao = responseData;
+      });
+    } else {
+      // A solicitação falhou
+      print('Erro na solicitação: ${response.statusCode}');
+    }
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Mapa3Simp(expressao)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -568,7 +594,7 @@ class _Mapa3Var extends State<Mapa3Var> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04*baseHeight),
                         child: TextButton(
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Mapa3Simp(valoresMapa)));
+                            _sendDataToAPI();
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),

@@ -5,8 +5,8 @@ import 'mapa3passo.dart';
 
 // ignore: must_be_immutable
 class Mapa3Simp extends StatefulWidget {
-  Map<int, int> mapa;
-  Mapa3Simp(this.mapa, {super.key});
+  String expressao;
+  Mapa3Simp(this.expressao, {super.key});
 
   @override
   _Mapa3Simp createState() => _Mapa3Simp();
@@ -46,7 +46,7 @@ class _Mapa3Simp extends State<Mapa3Simp> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0.05*baseWidth, 0.06 * baseHeight, 0.05*baseWidth, 0),
                   child: Text(
-                    simplificarExp(valoresMapa),
+                    expressao,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.nunito(
                     textStyle: const TextStyle(
@@ -84,7 +84,7 @@ class _Mapa3Simp extends State<Mapa3Simp> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04*baseHeight),
                         child: TextButton(
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Mapa3Passo(widget.mapa)));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Mapa3Passo(expressao)));
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),
@@ -130,11 +130,4 @@ class _Mapa3Simp extends State<Mapa3Simp> {
       ),
     );
   }
-}
-
-String simplificarExp(Map<int, int> valoresMapa)
-{
-  //Simplificar a expressão
-  String exp = 'Aqui aparecerá a expressão simplificada\nMapa: ${valoresMapa.toString()}';
-  return exp;
 }
