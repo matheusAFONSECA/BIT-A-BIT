@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'mapa2simp.dart';
 import 'package:http/http.dart' as http;
+import 'urlAtual.dart';
 
 class Mapa2Var extends StatefulWidget {
   const Mapa2Var({super.key});
@@ -17,13 +18,13 @@ var expressao = "";
 class _Mapa2Var extends State<Mapa2Var> {
   Future<void> _sendDataToAPI() async {
     final url =
-        "http://127.0.0.1:5000/simptabela"; // -> para quando rodar no PC (web)
+        "${urlAtual()}/simptabela"; // -> para quando rodar no PC (web)
 
     // quando for usar o "simplifica" mudar para "data"
     // quando for usar o "simptabela" mudar para "mapa"
     // quando for usar a "tabela" mudar para "exp"
     final response =
-        await http.post(Uri.parse(url), body: {"mapa": valoresMapa});
+        await http.post(Uri.parse(url), body: {"mapa": valoresMapa.toString()});
 
     if (response.statusCode == 200) {
       // A solicitação foi bem-sucedida

@@ -115,13 +115,17 @@ def simpTabela():
 @app.route('/tabela', methods=['POST'])
 def tabela():
     data = request.form.get('exp')  # Obtém o valor da chave 'exp' do corpo da solicitação POST
+    data2 = request.form.get('vars')  # Obtém o valor da chave 'vars' do corpo da solicitação POST
     exp_sympy = sympify(data)
-    simbolos = list(exp_sympy.free_symbols)
+    simbolos = []
+    data2 = re.sub("\[|\]|\s", "", data2)
+    for valores in re.split(",", data2):
+        simbolos.append(valores)
     tabela = truth_table(exp_sympy, simbolos)
     return str(list(tabela))
 
 
 if __name__=='__main__':
 	# app.run(debug=True)     # ATIVA A DEBUGAÇÃO -> mudanças no código acontecem em tempo real na API
-    app.run()               # Roda a API na porta padrão http://127.0.0.1:5000/ -> web, no PC mesmo
-    # app.run(host='0.0.0.0', port=8080)    # roda a API em uma porta e host que específicamos -> emulador
+    #app.run()               # Roda a API na porta padrão http://127.0.0.1:5000/ -> web, no PC mesmo
+    app.run(host='0.0.0.0', port=8080)    # roda a API em uma porta e host que específicamos -> emulador

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'mapa4simp.dart';
+import 'package:http/http.dart' as http;
+import 'urlAtual.dart';
 
 class Mapa4Var extends StatefulWidget {
   const Mapa4Var({super.key});
@@ -11,8 +13,32 @@ class Mapa4Var extends StatefulWidget {
 
 var estadoTexto = {000:false, 001:false, 010:false, 011:false, 100:false, 101:false, 110:false, 111:false, 1000:false, 1001:false, 1010:false, 1011:false, 1100:false, 1101:false, 1110:false, 1111:false};
 var valoresMapa = {0000:0, 0001:0, 0010:0, 0011:0, 0100:0, 0101:0, 0110:0, 0111:0, 1000:0, 1001:0, 1010:0, 1011:0, 1100:0, 1101:0, 1110:0, 1111:0};
+var expressao = "";
 
 class _Mapa4Var extends State<Mapa4Var> {
+  Future<void> _sendDataToAPI() async {
+    final url =
+        "${urlAtual()}/simptabela"; // -> para quando rodar no PC (web)
+
+    // quando for usar o "simplifica" mudar para "data"
+    // quando for usar o "simptabela" mudar para "mapa"
+    // quando for usar a "tabela" mudar para "exp"
+    final response =
+        await http.post(Uri.parse(url), body: {"mapa": valoresMapa.toString()});
+
+    if (response.statusCode == 200) {
+      // A solicitação foi bem-sucedida
+      final responseData = response.body;
+      setState(() {
+        expressao = responseData;
+      });
+    } else {
+      // A solicitação falhou
+      print('Erro na solicitação: ${response.statusCode}');
+    }
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Mapa4Simp(expressao)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -970,7 +996,7 @@ class _Mapa4Var extends State<Mapa4Var> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04*baseHeight),
                         child: TextButton(
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Mapa4Simp(valoresMapa)));
+                            _sendDataToAPI();
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),

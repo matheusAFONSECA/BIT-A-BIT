@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/mapa5simp.dart';
 import 'mapa5var.dart';
+import 'package:http/http.dart' as http;
+import 'urlAtual.dart';
 
 // ignore: must_be_immutable
 class Mapa5VarE extends StatefulWidget {
@@ -12,7 +14,34 @@ class Mapa5VarE extends StatefulWidget {
   _Mapa5VarE createState() => _Mapa5VarE();
 }
 
+var expressao = "";
+
 class _Mapa5VarE extends State<Mapa5VarE> {
+  Future<void> _sendDataToAPI() async {
+    final url =
+        "${urlAtual()}/simptabela"; // -> para quando rodar no PC (web)
+
+    // quando for usar o "simplifica" mudar para "data"
+    // quando for usar o "simptabela" mudar para "mapa"
+    // quando for usar a "tabela" mudar para "exp"
+    print(valoresMapa.toString());
+    final response =
+        await http.post(Uri.parse(url), body: {"mapa": valoresMapa.toString()});
+
+    if (response.statusCode == 200) {
+      // A solicitação foi bem-sucedida
+      final responseData = response.body;
+      setState(() {
+        expressao = responseData;
+      });
+    } else {
+      // A solicitação falhou
+      print('Erro na solicitação: ${response.statusCode}');
+    }
+    print(expressao);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Mapa5Simp(expressao)));
+  }
   @override
   Widget build(BuildContext context) {
     double baseWidth = MediaQuery.of(context).size.width;
@@ -1024,11 +1053,7 @@ class _Mapa5VarE extends State<Mapa5VarE> {
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 0.04 * baseHeight),
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        Mapa5Simp(valoresMapa)));
+                            _sendDataToAPI();
                           },
                           style: TextButton.styleFrom(
                             backgroundColor: const Color(0xffdfee36),

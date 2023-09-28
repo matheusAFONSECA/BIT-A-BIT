@@ -3,17 +3,16 @@ import 'tabela.dart';
 
 // ignore: must_be_immutable
 class Tabela4Var extends StatefulWidget {
-  String expressao;
+  String tab;
   List<String> variaveis;
-  Tabela4Var(this.expressao, this.variaveis, {super.key});
+  Tabela4Var(this.tab, this.variaveis, {super.key});
 
   @override
   _Tabela4Var createState() => _Tabela4Var();
 }
 
-var valoresTabela = criarTabela(expressao);
-
 class _Tabela4Var extends State<Tabela4Var> {
+  var valoresTabela = criarTabela(tab);
   @override
   Widget build(BuildContext context) {
     double baseWidth = MediaQuery.of(context).size.width;
@@ -616,7 +615,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -679,7 +678,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -742,7 +741,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -805,7 +804,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -868,7 +867,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -931,7 +930,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -994,7 +993,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,
@@ -1057,7 +1056,7 @@ class _Tabela4Var extends State<Tabela4Var> {
                             height: 0.045 * baseHeight,
                             alignment: Alignment.center,
                             child: const Text(
-                              '0',
+                              '1',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 30,

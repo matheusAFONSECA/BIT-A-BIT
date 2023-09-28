@@ -4,8 +4,8 @@ import 'mapa5var.dart';
 
 // ignore: must_be_immutable
 class Mapa5Passo extends StatefulWidget {
-  Map<int, int> mapa;
-  Mapa5Passo(this.mapa, {super.key});
+  String expressao;
+  Mapa5Passo(this.expressao, {super.key});
 
   @override
   _Mapa5Passo createState() => _Mapa5Passo();
