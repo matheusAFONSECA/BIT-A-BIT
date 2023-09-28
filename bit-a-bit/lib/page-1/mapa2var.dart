@@ -17,13 +17,13 @@ var expressao = "";
 class _Mapa2Var extends State<Mapa2Var> {
   Future<void> _sendDataToAPI() async {
     final url =
-        "http://127.0.0.1:5000/simptabela"; // -> para quando rodar no PC (web)
+        "http://10.0.23.178:8080/simptabela"; // -> para quando rodar no PC (web)
 
     // quando for usar o "simplifica" mudar para "data"
     // quando for usar o "simptabela" mudar para "mapa"
     // quando for usar a "tabela" mudar para "exp"
     final response =
-        await http.post(Uri.parse(url), body: {"mapa": valoresMapa});
+        await http.post(Uri.parse(url), body: {"mapa": valoresMapa.toString()});
 
     if (response.statusCode == 200) {
       // A solicitação foi bem-sucedida

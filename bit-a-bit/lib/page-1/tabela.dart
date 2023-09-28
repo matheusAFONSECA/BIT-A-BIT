@@ -21,12 +21,15 @@ class _Tabela extends State<Tabela> {
 
   Future<void> _sendDataToAPI() async {
     final url =
-        "http://127.0.0.1:5000/tabela"; // -> para quando rodar no PC (web)
+        "http://10.0.20.89:8080/tabela"; // -> para quando rodar no PC (web)
 
     // quando for usar o "simplifica" mudar para "data"
     // quando for usar o "simptabela" mudar para "mapa"
     // quando for usar a "tabela" mudar para "exp"
-    final response = await http.post(Uri.parse(url), body: {"exp": expressao});
+    variaveis = calculaVar(expressao);
+    numVar = variaveis.length;
+    final response = await http.post(Uri.parse(url), body: {"exp": expressao, "vars": variaveis.toString()});
+    print(variaveis.toString());
 
     if (response.statusCode == 200) {
       // A solicitação foi bem-sucedida
@@ -39,12 +42,6 @@ class _Tabela extends State<Tabela> {
       print('Erro na solicitação: ${response.statusCode}');
     }
 
-    variaveis = calculaVar(expressao);
-    numVar = variaveis.length;
-    print("numvar: ");
-    print(numVar);
-    print("tabela:");
-    print(tab);
     if (numVar == 2) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => Tabela2Var(tab, variaveis)));
@@ -220,7 +217,7 @@ List<String> calculaVar(String exp) {
   String aux = exp;
 
   //Remover operadores logicos
-  aux = aux.replaceAll(RegExp('[&|\'+*]+'), '');
+  aux = aux.replaceAll(RegExp('[&|\'+*~\(\)]+'), '');
 
   while (aux != '') {
     variaveis.add(aux[0]);

@@ -16,7 +16,7 @@ class _Simplificacao2 extends State<Simplificacao2> {
 
   Future<void> _sendDataToAPI() async {
     final url =
-        "http://127.0.0.1:5000/simplifica"; // -> para quando rodar no PC (web)
+        "http://10.0.23.178:8080/simplifica"; // -> para quando rodar no PC (web)
 
     // quando for usar o "simplifica" mudar para "data"
     // quando for usar o "simptabela" mudar para "mapa"

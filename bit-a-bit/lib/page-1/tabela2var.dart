@@ -11,9 +11,10 @@ class Tabela2Var extends StatefulWidget {
   _Tabela2Var createState() => _Tabela2Var();
 }
 
-var valoresTabela = criarTabela(tab);
+
 
 class _Tabela2Var extends State<Tabela2Var> {
+  var valoresTabela = criarTabela(tab);
   @override
   Widget build(BuildContext context) {
     double baseWidth = MediaQuery.of(context).size.width;

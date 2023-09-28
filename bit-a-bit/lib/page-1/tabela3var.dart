@@ -3,17 +3,17 @@ import 'tabela.dart';
 
 // ignore: must_be_immutable
 class Tabela3Var extends StatefulWidget {
-  String expressao;
+  String tab;
   List<String> variaveis;
-  Tabela3Var(this.expressao, this.variaveis, {super.key});
+  Tabela3Var(this.tab, this.variaveis, {super.key});
 
   @override
   _Tabela3Var createState() => _Tabela3Var();
 }
 
-var valoresTabela = criarTabela(expressao);
 
 class _Tabela3Var extends State<Tabela3Var> {
+  var valoresTabela = criarTabela(tab);
   @override
   Widget build(BuildContext context) {
     double baseWidth = MediaQuery.of(context).size.width;
