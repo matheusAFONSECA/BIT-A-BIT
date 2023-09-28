@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/simplificadorPasso2.dart';
 import 'package:http/http.dart' as http;
+import 'urlAtual.dart';
 
 class Simplificacao2 extends StatefulWidget {
   const Simplificacao2({super.key});
@@ -15,8 +16,7 @@ class _Simplificacao2 extends State<Simplificacao2> {
   String resultado = '';
 
   Future<void> _sendDataToAPI() async {
-    final url =
-        "http://10.0.23.178:8080/simplifica"; // -> para quando rodar no PC (web)
+    final url = "${urlAtual()}/simplifica"; // -> para quando rodar no PC (web)
 
     // quando for usar o "simplifica" mudar para "data"
     // quando for usar o "simptabela" mudar para "mapa"

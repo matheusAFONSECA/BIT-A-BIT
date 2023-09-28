@@ -4,6 +4,7 @@ import 'package:myapp/page-1/tabela2var.dart';
 import 'package:myapp/page-1/tabela3var.dart';
 import 'package:myapp/page-1/tabela4var.dart';
 import 'package:http/http.dart' as http;
+import 'urlAtual.dart';
 
 class Tabela extends StatefulWidget {
   const Tabela({super.key});
@@ -20,15 +21,15 @@ class _Tabela extends State<Tabela> {
   int numVar = 0;
 
   Future<void> _sendDataToAPI() async {
-    final url =
-        "http://10.0.20.89:8080/tabela"; // -> para quando rodar no PC (web)
+    final url = "${urlAtual()}/tabela"; // -> para quando rodar no PC (web)
 
     // quando for usar o "simplifica" mudar para "data"
     // quando for usar o "simptabela" mudar para "mapa"
     // quando for usar a "tabela" mudar para "exp"
     variaveis = calculaVar(expressao);
     numVar = variaveis.length;
-    final response = await http.post(Uri.parse(url), body: {"exp": expressao, "vars": variaveis.toString()});
+    final response = await http.post(Uri.parse(url),
+        body: {"exp": expressao, "vars": variaveis.toString()});
     print(variaveis.toString());
 
     if (response.statusCode == 200) {
@@ -227,13 +228,13 @@ List<String> calculaVar(String exp) {
   return variaveis;
 }
 
-String tratarExp(String exp){
+String tratarExp(String exp) {
   String expTrat = '';
   String aux = exp;
   aux = aux.replaceAll('+', '|');
   aux = aux.replaceAll('*', '&');
   aux = aux.replaceAll('\'', '~');
-  
+
   expTrat = aux;
   return expTrat;
 }
