@@ -219,7 +219,6 @@ List<String> calculaVar(String exp) {
 
   //Remover operadores logicos
   aux = aux.replaceAll(RegExp('[&|\'+*~\(\)]+'), '');
-
   while (aux != '') {
     variaveis.add(aux[0]);
     aux = aux.replaceAll(RegExp(aux[0]), '');
@@ -234,7 +233,6 @@ String tratarExp(String exp) {
   aux = aux.replaceAll('+', '|');
   aux = aux.replaceAll('*', '&');
   aux = aux.replaceAll('\'', '~');
-
   expTrat = aux;
   return expTrat;
 }
